@@ -1,6 +1,0 @@
-ani14shaha@gmail.com:hBE2_$%%NR#HzxD|Name:Amn Shaha|specs:C++|hobby:Listening to podcasts|region:Ambad Maharashtra|year:2001|institute:LMN~connection_req:<gn.sh@gmail.com_T,akash@gmail.com_T,>|req_sent:[mlbw@gmail.com,]|rejected:{akash@gmail.com,}
-abc.xyz@gmail.com:56789923872801|Name:abc xyz|specs:PYTHON|hobby:Photography|region:Basana Chhattisgarh|year:2006|institute:ABC~connection_req:<elmsk@gmail.com_T,mlbw@gmail.com_T,>|req_sent:[]|rejected:{}
-gn.sh@gmail.com:gnshahshq8266|Name:gn sh|specs:HTML & CSS|hobby:Photography|region:Jaipur Rajasthan|year:2001|institute:ABC~connection_req:<mlbw@gmail.com_T,akash@gmail.com_T,ani14shaha@gmail.com_T,>|req_sent:[]|rejected:{}
-elmsk@gmail.com:elmskk1212`|Name:eln msk|specs:PYTHON|hobby:Filmmaking|region:Mahem Goa|year:1991|institute:JST~connection_req:<abc.xyz@gmail.com_T,>|req_sent:[]|rejected:{}
-akash@gmail.com:hBE2_$%%NR#HzxD|Name:Aka shaha|specs:C++|hobby:Listening to podcasts|region:Ambad Maharashtra|year:2001|institute:XCZ~connection_req:<gn.sh@gmail.com_T,ani14shaha@gmail.com_T,>|req_sent:[]|rejected:{}
-mlbw@gmail.com:mlbwans1234|Name:Ml Bw|specs:JAVASCRIPT|hobby:Filmmaking|region:Morshi Maharashtra|year:2003|institute:ABC~connection_req:<gn.sh@gmail.com_T,abc.xyz@gmail.com_T,ani14shaha@gmail.com,>|req_sent:[]|rejected:{}
