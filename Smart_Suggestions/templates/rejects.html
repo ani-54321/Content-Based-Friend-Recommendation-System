@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Recommendation | Rejected Profiles</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'newcard.css' %}">
+{% endblock %}
+
+{% block nav_buts %}
+<a style="text-decoration: none; color:azure;" href="{% url 'logout' %}">
+  <li class="btn btn-outline-danger nav-item" style="margin: 5px 20px 5px;">
+    Logout
+  </li>
+</a>
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Engraph
+</button>
+{% endblock %}
+
+{% block navcontent %}
+<li class="nav-item">
+  <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Suggs</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" aria-current="page" href="{% url 'graph_connections' %}">FOFs</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" aria-current="page" style="border-bottom: 3px solid red;" href="{% url 'rejects' %}">Rejections</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" aria-current="page" href="{% url 'con_req' %}">Connection Requests</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{% url 'connections' %}">Connections</a>
+</li>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Graph of All Connections</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="here">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+{% if rejections %}
+<body style="background-image: linear-gradient(315deg, rgb(226, 205, 235) 0%, #3f3737 74%);background-repeat:no-repeat; background-size:cover;"></body>
+{% endif %}
+
+{% for rej in rejections %}
+<div class='container' id="{{ rej.3 }}">
+  <div class='card'>
+    <div class='scroll'>
+      <div class='card-overlay'>
+        <div class='but right'></div>
+        <h1>@{{ rej.0|title }}</h1>
+        <div class='pfp'>
+          <img src='https://assets.codepen.io/5526057/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=512&amp;version=1617398452&amp;width=512' class="image" id="{{ rej.0 }}">
+        </div>
+      </div>
+      <div class='card-details'>
+        <div class='but left'></div>
+        <div class='about'>
+          <h2>About</h2>
+          <h3>Hi there! My name is {{ rej.0|title }}</h3>
+          <p> Year of Birth : {{ rej.5 }}</p>
+          <p>I have a strong background in {{ rej.1|title }} and my hobby is {{ rej.2|title }} </p>
+          <p> I am from {{ rej.4|title }} </p>
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class='socials'>
+      <button type="button" class="btn btn-outline-success" name="email" value="{{ rej.3 }}" onclick="make_lis(this)">Reconsider</button>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row-md-4">
+    <hr>
+    <div class="container card text-dark bg-light mb-3" style="max-width: 18rem;">
+      <div class="card-header">
+        <p id='{{ rej.3 }}'>Not Selected</p>
+      </div>
+      <div class="card-body">
+        <div class="profile-card-4 text-center">
+          <div class="profile-content">
+            <div class="profile-name">
+              <h3>{{ rej.0|title }} </h3>
+            </div>
+            <div class="profile-description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+              eirmod
+              tempor.</div>
+            <div class="row">
+              <div class="col-xs-4">
+                <div class="profile-overview">
+                  <p>Year of Birth</p>
+                  <h4> {{ rej.5 }} </h4>
+                </div>
+              </div>
+              <div class="col-xs-4">
+                <div class="profile-overview">
+                  <p>Hobbies</p>
+                  <h4>{{ rej.2|title }}</h4>
+                </div>
+              </div>
+              <div class="col-xs-4">
+                <div class="profile-overview">
+                  <p>Specialization</p>
+                  <h4>{{ rej.1|title }}</h4>
+                </div>
+                <div class="profile-overview">
+                  <p>Area/Region</p>
+                  <h4>{{ rej.4|title }}</h4>
+                </div>
+                <div class="profile-overview">
+                  <p>Currently Working At</p>
+                  <h4>{{ rej.6|title }}</h4>
+                </div>
+                <button type="button" class="btn btn-outline-success" name="email" value="{{ rej.3 }}" onclick="make_lis(this)">Reconsider</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  {% endfor %}
+<!-- </div>
+</div> -->
+
+<div style="margin-bottom: 50px;">
+{% if rejections %}
+  <form method="POST" action="rejects">
+      {% csrf_token %}
+      <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary btn-lg" style="margin:auto; display: block; width:90%" id='confirm' name="confirm" onclick="ret_sug(this)" disabled>Confirm</button>
+  </form>
+</div>
+{% else %}
+<div class="alert alert-info" role="alert">
+  🙂 Not Rejected Any Profile!! 🙂
+</div>
+{% endif %}
+
+<script>
+    var backtoConns = [];
+
+    var image = document.getElementsByClassName("image")
+
+    for(let i=0; i<image.length; i++){
+      console.log(image[i].id)
+      image[i].src = "https://joeschmoe.io/api/v1/random"+image[i].id;
+    }
+
+    function make_lis(a){
+        if (a.innerText == "Reconsider"){
+          backtoConns.push(a.value);
+          a.innerText = "Ingnore";
+          a.className = "btn btn-outline-danger";
+          document.getElementById('confirm').disabled = false;
+        }
+        else{
+          let index = backtoConns.indexOf(a.value);
+          backtoConns.splice(index, 1);
+          a.innerText = "Reconsider";
+          a.className = "btn btn-outline-success";
+          if(backtoConns.length==0){
+            document.getElementById('confirm').disabled = true;
+          }
+        }
+    }
+
+    function ret_sug(a){
+        a.value = backtoConns;
+    }
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $('.left').click(function (){
+      $('.left').css('display','none');
+      $('.right').css('display','flex');
+      $('.scroll').animate({
+            scrollLeft: $('.card-overlay').offset().left
+        }, 500);
+    })
+    
+    $('.right').click(function (){
+      $('.right').css('display','none');
+      $('.left').css('display','flex');
+      $('.scroll').animate({
+            scrollLeft: $('.card-details').offset().left
+        }, 800);
+    })
+</script>
+
+<script>
+  var cnv;
+  var circles = [];
+  var enter=true;
+  var r;
+  var angle;
+  var step;
+  var names = []
+  names = {{all|safe}}
+  var friends = []
+  friends = {{friends|safe}}
+  console.log(names, friends)
+
+  function setup() {
+      if(enter){
+        r = 200;
+        cnv = createCanvas(innerWidth, innerHeight);
+        cnv.parent('here');
+        angle = 0;
+        step = TWO_PI/names.length;
+        translate(width/2, height/2);
+        for(let i=0; i<names.length; i++){
+          let f = [];
+          let x = r * sin(angle);
+          let y = r * cos(angle);
+          fill(0);
+          ellipse(x, y, r/1.5);
+          for(let j=0; j<friends.length; j++){
+            if(friends[j][0].trim()==names[i].trim()){
+              f.push(friends[j][1].trim());
+            }
+            else if(friends[j][1].trim()==names[i].trim()){
+              f.push(friends[j][0].trim());
+            }
+          }
+          circle = {
+              x: x,
+              y: y,
+              name: names[i].trim(),
+              friend: f
+          };
+          circles.push(circle);
+          angle = angle + step;
+        }
+        for(let i=0; i<circles.length; i++){
+          for(let j=0; j<circles.length; j++){
+            if(circles[j].friend.includes(circles[i].name)){
+              stroke(0);
+              strokeWeight(4);
+              beginShape();
+              vertex(circles[i].x, circles[i].y)
+              vertex(circles[j].x, circles[j].y);
+              endShape();
+            }
+          }
+        }
+        textAlign(CENTER, CENTER);
+        textSize(20);
+        fill(255);
+        for(let i=0; i<circles.length; i++){
+          if(i==0) text("YOU", circles[i].x, circles[i].y);
+          else text(names[i].toUpperCase(), circles[i].x, circles[i].y);
+        }
+        enter=false;
+      }
+    }
+</script>
+
+
+{% endblock %}

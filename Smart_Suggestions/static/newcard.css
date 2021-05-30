@@ -1,0 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Spartan&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+a:visited {
+  color: initial;
+  text-decoration: none;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+}
+
+.but {
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  font-family: "Spartan", "sans-serif";
+  font-weight: 900;
+  font-size: min(max(1rem, calc(1rem + ((1vw - 0.1875rem) * 1.4815))), 2.5rem);
+  color: white;
+  min-height: 1vw;
+  aspect-ratio: 1/1;
+  bottom: 0;
+  cursor: pointer;
+  opacity: 50%;
+  position: absolute;
+  width: 10%;
+  z-index: 3;
+}
+.but.left {
+  display: none;
+  left: 1rem;
+}
+.but.left:before {
+  content: "<<";
+  color: black;
+}
+.but.right {
+  right: 1rem;
+}
+.but.right:before {
+  content: ">>";
+}
+.but:hover {
+  opacity: 100%;
+}
+
+.card {
+  aspect-ratio: 16/12;
+  background-color: white;
+  border-radius: 2em;
+  display: flex;
+  min-width: 18.75rem;
+  overflow: hidden;
+  position: relative;
+  width: 50vw;
+}
+.card:hover .pfp::after {
+  -webkit-animation: shine 5s ease-in-out 0s infinite;
+          animation: shine 5s ease-in-out 0s infinite;
+}
+.card:hover .pfp {
+  -webkit-animation: coin-rotate 5s ease-in-out 1s infinite;
+          animation: coin-rotate 5s ease-in-out 1s infinite;
+  transform: rotate3d(0, 1, 0, -20deg) scale(1);
+}
+
+.card-details, .card-overlay {
+  align-items: initial;
+  flex-direction: column-reverse;
+  display: flex;
+  justify-content: initial;
+  height: 100%;
+  position: relative;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.card-details .about {
+  height: 100%;
+  overflow: auto;
+  padding: 15% 20% 0 20%;
+  width: 100%;
+}
+.card-details .about::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.625rem;
+}
+.card-details .about::-webkit-scrollbar-thumb {
+  border-radius: 0.375rem;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.card-details .about::-webkit-scrollbar-thumb:hover {
+  background-color: black;
+}
+.card-details .about h2, .card-details .about h3 {
+  font-family: "Spartan", "sans-serif";
+  font-weight: 900;
+  font-size: min(max(1rem, calc(1rem + ((1vw - 0.1875rem) * 1.4815))), 2.5rem);
+  color: black;
+  min-height: 1vw;
+}
+.card-details .about h2 {
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+}
+.card-details .about h3 {
+  font-size: min(max(1rem, calc(1rem + ((1vw - 0.1875rem) * 0.4938))), 1.5rem);
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+.card-details .about p {
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 300;
+  font-size: 1rem;
+  color: black;
+  min-height: 1vw;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.card-overlay {
+  align-items: center;
+  flex-direction: column-reverse;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(133deg, #0eb610 0%, #dff638 37%, #de16d6 71%, #3300ff 100%);
+}
+.card-overlay::before {
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(1.875rem);
+          backdrop-filter: blur(1.875rem);
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.card-overlay h1 {
+  font-family: "Spartan", "sans-serif";
+  font-weight: 900;
+  font-size: min(max(1rem, calc(1rem + ((1vw - 0.1875rem) * 1.4815))), 2.5rem);
+  color: black;
+  min-height: 1vw;
+  color: black;
+  margin-top: 1rem;
+  z-index: 2;
+}
+.card-overlay .pfp {
+  aspect-ratio: 1/1;
+  background-color: white;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  transition: all 1s ease-in-out 0s;
+  transform: scale(0.9);
+  width: 35%;
+  z-index: 2;
+}
+.card-overlay .pfp::after {
+  background: white;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 0) 100%);
+  content: "";
+  height: 200%;
+  position: absolute;
+  transform: rotate(45deg) translate(250%, -20%);
+  width: 40%;
+}
+.card-overlay .pfp img {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  -o-object-fit: fill;
+     object-fit: fill;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+}
+
+.container {
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  /* background-color: deepSkyBlue; */
+  height: 100vh;
+  max-height: 100%;
+  max-width: 100%;
+  width: 100vw;
+}
+
+.socials {
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  height: 25%;
+  position: absolute;
+  width: 100%;
+}
+.socials a {
+  color: black;
+  display: inline-block;
+}
+
+.scroll {
+  display: flex;
+  height: 75%;
+  overflow: hidden;
+  position: relative;
+  min-width: 100%;
+  width: 100%;
+}
+
+@supports not (aspect-ratio: 16/12) {
+  .card::before {
+    float: left;
+    padding-top: 75%;
+    content: "";
+  }
+  .card::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+@supports not (aspect-ratio: 1/1) {
+  .pfp::before, img::before {
+    float: left;
+    padding-top: 100%;
+    content: "";
+  }
+  .pfp::after, img::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+@-webkit-keyframes coin-rotate {
+  0% {
+    transform: rotate3d(0, 1, 0, -20deg) scale(1);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, 20deg) scale(1);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, -20deg) scale(1);
+  }
+}
+@keyframes coin-rotate {
+  0% {
+    transform: rotate3d(0, 1, 0, -20deg) scale(1);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, 20deg) scale(1);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, -20deg) scale(1);
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    transform: rotate(45deg) translate(250%, -20%);
+  }
+  20% {
+    transform: rotate(45deg) translate(-350%, -20%);
+  }
+  100% {
+    transform: rotate(45deg) translate(-350%, -20%);
+  }
+}
+@keyframes shine {
+  0% {
+    transform: rotate(45deg) translate(250%, -20%);
+  }
+  20% {
+    transform: rotate(45deg) translate(-350%, -20%);
+  }
+  100% {
+    transform: rotate(45deg) translate(-350%, -20%);
+  }
+}

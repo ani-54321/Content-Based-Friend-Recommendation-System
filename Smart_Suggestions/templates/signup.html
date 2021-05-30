@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Recommendation | SignUp</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'signupstyle.css' %}">
+<script src="{% static 'signup.js' %}"></script>
+{% endblock %}
+
+{% block nav_buts %}
+<a style="text-decoration: none; color:azure;" href="{% url 'signup' %}">
+  <li class="btn btn-outline-danger nav-item" style="margin: 5px 20px 5px;">
+    SignUp
+  </li>
+</a>
+<a style="text-decoration: none; color:azure;" href="{% url 'login' %}">
+  <li class="btn btn-outline-success nav-item">
+    LogIn
+  </li>
+</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-4 mx-6" style="background-image: linear-gradient(315deg, #000000 0%, #414141 74%);">
+  <h3 class="login-title">Welcome!!</h3>
+  <form class="row g-3" method="POST" action="login">
+    {% csrf_token %}
+    <div class="col-md-6">
+      <label for="fname" class="form-label" style="color: white;">First Name</label>
+      <input type="text" class="form-control" id="fname" name="fname">
+    </div>
+    <div class="col-md-6">
+      <label for="lname" class="form-label" style="color: white;">Last Name</label>
+      <input type="text" class="form-control" id="lname" name="lname">
+    </div>
+    <div class="col-md-6">
+      <label for="email" class="form-label" style="color: white;">Email</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+    </div>
+    <div class="col-md-6">
+      <label for="password" class="form-label" style="color: white;">Password</label>
+      <input type="password" class="form-control" id="password" name="pass">
+    </div>
+    <hr>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Specializations</span>
+      <input list='specializations' type="text" name="specs" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      <datalist id="specializations">
+        <option value="HTML & CSS">
+        <option value="JAVASCRIPT">
+        <option value="PYTHON">
+        <option value="COBOL">
+        <option value="C">
+        <option value="JAVA">
+        <option value="C++">
+      </datalist>
+    </div>
+    
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Hobbies</span>
+      <input list='hobbies' name="hobby" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+      <datalist id="hobbies">
+        <option value="3D printing">
+        <option value="Blogging">
+        <option value="Board/tabletop games">
+        <option value="Crossword puzzles">
+        <option value="Filmmaking">
+        <option value="Listening to podcasts">
+        <option value="Photography">
+      </datalist>
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Birth Year</span>
+      <input name="year" type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Institute of Education</span>
+      <input name="institute" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <hr>
+
+    <div>
+      {% include 'cities/index.html' %}
+    </div>
+    <br>
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary btn-lg" style="width: 50%;display : block;margin: auto;">SignUp</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

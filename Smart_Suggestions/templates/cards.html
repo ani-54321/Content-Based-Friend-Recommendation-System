@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Recommendation | Home</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'startstyle.css' %}">
+<script src="{% static 'cards.js' %}"></script>
+<link rel='stylesheet' href='https://unpkg.com/aos@next/dist/aos.css'>
+{% endblock %}
+
+{% block nav_buts %}
+<a style="text-decoration: none; color:azure;" href="{% url 'signup' %}">
+  <li class="btn btn-outline-danger nav-item" style="margin: 5px 10px 5px;">
+    SignUp
+  </li>
+</a>
+<a style="text-decoration: none; color:azure;" href="{% url 'login' %}">
+  <li class="btn btn-outline-success nav-item" style="margin: 5px 10px 5px;">
+    LogIn
+  </li>
+</a>
+{% endblock %}
+
+{% block content %}
+<section class="main-section">
+  <div class="courses">
+    <div class="course html" tabindex="1">
+      <div class="course-info">
+        <span>Feature1</span>
+        <h5>Collaborative Filtering</h5>
+        <a href="https://developers.google.com/machine-learning/recommendation/collaborative/basics" tabindex="2">what it means? <i class="fas fa-chevron-right"></i></a>
+      </div>
+      <div class="course-more">
+        <div class="details">
+          <h5>signup to explore</h5>
+        </div>
+        <h2 class="name">Implemented by Amazon</h2>
+        <a class="continue-btn html" tabindex="4" href="{% url 'signup' %}">SignUp</a>
+      </div>
+    </div>
+    <div class="course css" tabindex="5">
+      <div class="course-info">
+        <span>Feature2</span>
+        <h5>Content-based Filtering:</h5>
+        <a href="https://developers.google.com/machine-learning/recommendation/content-based/basics" tabindex="6">what it means? <i class="fas fa-chevron-right"></i></a>
+      </div>
+      <div class="course-more">
+        <div class="details">
+          <h5>SignUp to explore</h5>
+        </div>
+        <h2 class="name">Implemented by LinkedIn</h2>
+        <a class="continue-btn css" tabindex="8" href="{% url 'signup' %}">SignUp</a>
+      </div>
+    </div>
+    <div class="course js" tabindex="9">
+      <div class="course-info">
+        <span>Feature3</span>
+        <h5>Search Algos</h5>
+        <a href="{% url 'login' %}">check it out <i class="fas fa-chevron-right"></i></a>
+      </div>
+      <div class="course-more">
+        <div class="details">
+          <h5>Tree & Graph based search</h5>
+        </div>
+        <h2 class="name">Implemented by Google Search</h2>
+        <a class="continue-btn js" tabindex="11" href="{% url 'signup' %}">SignUp</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+<!-- {% block content %} -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+<div class="container my-4">
+  <div class="card">
+    <div class="card-header">
+      <figure class="text-center">
+        <blockquote class="blockquote">
+            
+          <p>{% block sug_type %}
+            
+            {% endblock %}</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          <cite title="Source Title">Smart Recommendation</cite>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="row-md-4">
+      <hr>
+      <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <div class="profile-card-4 text-center">
+            <div class="profile-content">
+              <div class="profile-name">
+                <h3> {% block name %}
+
+                    {% endblock %} </h3>
+              </div>
+              <div class="profile-description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                eirmod
+                tempor.</div>
+              <div class="row">
+                <div class="col-xs-4">
+                  <div class="profile-overview">
+                    <p>Year of Birth</p>
+                    <h4> {% block year %}
+                        
+                        {% endblock %} </h4>
+                  </div>
+                </div>
+                <div class="col-xs-4">
+                  <div class="profile-overview">
+                    <p>Hobbies</p>
+                    <h4> {% block hobby %}
+                        
+                        {% endblock %} </h4>
+                  </div>
+                </div>
+                <div class="col-xs-4">
+                  <div class="profile-overview">
+                    <p>Specialization</p>
+                    <h4> {% block specials %}
+                        
+                        {% endblock %} </h4>
+                  </div>
+                  <button type="button" class="btn btn-outline-primary">Connect</button>
+                  <button type="button" class="btn btn-outline-danger">Reject</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- {% endblock %} -->

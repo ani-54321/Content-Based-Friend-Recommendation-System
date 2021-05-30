@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Recommendation | Your Recommendations</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'newcard.css' %}">
+<!-- Required meta tags -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.sound.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+{% load static %}
+<script src="{% static 'circles.js' %}"></script>
+{% endblock %}
+
+{% block nav_buts %}
+<a style="text-decoration: none; color:azure;" href="{% url 'logout' %}">
+  <li class="btn btn-outline-danger nav-item" style="margin: 5px 20px 5px;">
+    Logout
+  </li>
+</a>
+{% endblock %}
+
+{% block navcontent %}
+<li class="nav-item">
+  <a class="nav-link active" aria-current="page" style="border-bottom: 3px solid yellow;" href="{% url 'home' %}">Suggs</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" aria-current="page" href="{% url 'graph_connections' %}">FOFs</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" aria-current="page" href="{% url 'rejects' %}">Rejections</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" aria-current="page" href="{% url 'con_req' %}">Connection Requests</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{% url 'connections' %}">Connections</a>
+</li>
+{% endblock %}
+
+{% block content %}
+<!-- {% for name in all %}
+  <h1> {{name}} </h1>
+{% endfor %} -->
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+
+    <script>
+      var circles = [];
+      var enter=true;
+      var r;
+      var angle;
+      var step;
+      var names = {{all|safe}}
+      var friends = {{friends|safe}}
+      //console.log(names, friends)
+
+      function setup() {
+          if(enter){
+            createCanvas(innerWidth, innerHeight);
+            r = 100*names.length*0.2;
+            
+            angle = 0;
+            step = TWO_PI/names.length;
+            translate(width/2, height/2);
+            for(let i=0; i<names.length; i++){
+              let f = [];
+              let x = r * sin(angle);
+              let y = r * cos(angle);
+              fill(255)
+              ellipse(x, y, r/1.5);
+              fill(0);
+              textAlign(CENTER, CENTER);
+              if(i==0) text("You", x, y);
+              else text(names[i], x, y);
+              for(let j=0; j<friends.length; j++){
+                if(friends[j][0].trim()==names[i].trim()){
+                  f.push(friends[j][1].trim());
+                }
+                else if(friends[j][1].trim()==names[i].trim()){
+                  f.push(friends[j][0].trim());
+                }
+              }
+              circle = {
+                  x: x,
+                  y: y,
+                  name: names[i].trim(),
+                  friend: f
+              };
+              circles.push(circle);
+              angle = angle + step;
+            }
+            for(let i=0; i<circles.length; i++){
+              for(let j=0; j<circles.length; j++){
+                if(circles[j].friend.includes(circles[i].name)){
+                  stroke(255, 255, 255);
+                  strokeWeight(4);
+                  beginShape();
+                  vertex(circles[i].x, circles[i].y)
+                  vertex(circles[j].x, circles[j].y);
+                  endShape();
+                }
+              }
+            }
+            enter=false;
+          }
+        }
+    </script>
+
+{% endblock %}

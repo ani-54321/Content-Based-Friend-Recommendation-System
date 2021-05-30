@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <script src="{% static 'cities.js' %}"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <form method="POST" action="login"> -->
+        <label for="sts" style="color: white;"> State </label>
+        <select onchange="print_city('state', this.selectedIndex);" id="sts" name="state" class="form-control"
+            required></select>
+        <br>
+        <label for="state" style="color: white;"> City </label>
+        <select id="state" name="city" class="form-control" required></select>
+    <!-- </form> -->
+    <script language="javascript">print_state("sts");</script>
+</body>
+
+</html>
